@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:if="${!isEdit}">Добавление новой категории</title>
+    <title th:if="${isEdit}">Редактирование категории</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/create-world.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3"> <!-- autocomplete определяет стоит ли сохранять данные введеные в поле -->
+            <form th:if="${!isEdit}" autocomplete="off" action="#" th:action="@{/createCategory}"
+                  th:object="${categoryDTO}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Добавляем новую категорию</h2>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{nameCategory}" th:placeholder="#{titleNameCategory}"
+                               class="form-control"/>
+                        <label th:if="${#fields.hasErrors('nameCategory')}" th:errors="*{nameCategory}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Добавить категорию</button>
+                    </div>
+                </div>
+
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+
+            </form>
+
+            <form th:if="${isEdit}" autocomplete="off" action="#" th:action="@{/updateCategory}"
+                  th:object="${categoryDTO}" th:method="put" class="form-horizontal"
+                  role="form">
+                <input type="hidden" name="id" th:value="${categoryDTO.getId()}"/>
+                <h2>Редактирование слова</h2>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{nameCategory}" th:placeholder="#{titleNameCategory}"
+                               class="form-control"/>
+                        <label th:if="${#fields.hasErrors('nameCategory')}" th:errors="*{nameCategory}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Внести изменения</button>
+                    </div>
+                </div>
+
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

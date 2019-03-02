@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Словарные словы</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/worlds.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/user/home}"> Английский помощник </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a>Слова</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/categories}">Категории</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a>Профиль</a>
+                    </li>
+                    <li>
+                        <a>Отчеты</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}"><strong>Выход</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div>
+            <p>Поиск по полям таблицы <strong>Значение</strong>, <strong>Перевод</strong>, <strong>Категория</strong>:
+            </p>
+            <input class="form-control" id="inputFilter" type="text" placeholder="Поиск..."/>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="btn-group">
+                <a class="btn btn-sm btn-success" target="_blank" th:href="@{/createWorld}" role="button"><span
+                        class="glyphicon glyphicon-plus"></span> Добавить слово</a>
+                <a class="btn btn-sm btn-primary" th:href="@{/worlds}" role="button"><span
+                        class="glyphicon glyphicon-refresh"></span> Обновить</a>
+            </div>
+        </div>
+        <div th:if="${successMessage!=null || errorMessage!=null}" class="row">
+            <div th:if="${successMessage!=null}" class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p th:utext="${successMessage}"></p>
+            </div>
+            <div th:if="${errorMessage!=null}" class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p th:utext="${errorMessage}"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table id="worldsTable" class="table table-striped">
+                    <tr>
+                        <th>Значение</th>
+                        <th>Перевод</th>
+                        <th>Категория</th>
+                        <th>Действия</th>
+                    </tr>
+                    <tr th:each="world: ${worlds}">
+                        <td th:utext="${world.getValue()}"></td>
+                        <td th:utext="${world.getTranslation()}"></td>
+                        <td th:utext="${world.getNameCategory()}"></td>
+                        <td>
+                            <form action="#" th:action="@{'/updateWorld/' + ${world.getId()}}" th:method="get">
+                                <button class="btn btn-sm btn-primary" type="submit" id="submitButton"><span
+                                        class="glyphicon glyphicon-edit"></span> Изменить
+                                </button>
+                            </form>
+                            <form action="#" th:action="@{'/deleteWorld/'+${world.getId()}}" th:method="delete">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button class="btn btn-sm btn-danger" type="submit"><span
+                                        class="glyphicon glyphicon-remove"></span>Удалить
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div th:if="${worlds.getTotalPages() != 1}" class="row">
+            <div class="form-group col-md-1">
+                <select class="form-control pagination" id="pageSizeSelect">
+                    <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                            th:value="${pageSize}"
+                            th:selected="${pageSize} == ${selectedPageSize}"></option>
+                </select>
+            </div>
+            <div class="form-group col-md-11 pagination-centered" align="center">
+                <ul class="pagination">
+                    <li th:class="${worlds.getNumber() == 0} ? disabled"><a
+                            class="pageLink"
+                            th:href="@{/worlds(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                    </li>
+                    <li th:class="${worlds.getNumber() == 0} ? disabled"><a
+                            class="pageLink"
+                            th:href="@{/worlds(pageSize=${selectedPageSize}, page=${worlds.number})}">&larr;</a>
+                    </li>
+                    <li
+                            th:class="${worlds.getNumber() == (page - 1)} ? 'active pointer-disabled'"
+                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                        <a class="pageLink"
+                           th:href="@{/worlds(pageSize=${selectedPageSize}, page=${page})}"
+                           th:text="${page}"></a>
+                    </li>
+                    <li
+                            th:class="${worlds.getNumber() + 1 == worlds.getTotalPages()} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{/worlds(pageSize=${selectedPageSize}, page=${worlds.number + 2})}">&rarr;</a>
+                    </li>
+                    <li
+                            th:class="${worlds.getNumber() + 1 == worlds.getTotalPages()} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{/worlds(pageSize=${selectedPageSize}, page=${worlds.totalPages})}">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    // Скрипт будет выполнять после того, как страница будет готова выполнению js
+    $(document).ready(function () {
+        changePageAndSize();
+    });
+
+    function changePageAndSize() {
+        $('#pageSizeSelect').change(function (evt) {
+            // location.replace заменяет текущей ресурс на новый по URL
+            window.location.replace("/worlds?pageSize=" + this.value + "&page=1");
+        });
+    }
+
+    $("#inputFilter").on("keyup", function (e) {
+        var inputValue = $(this).val().toLowerCase();
+        $("#worldsTable tr").filter(function () {
+            // toggle позволяет отобразить или скрыть выбранные элементы
+            $(this).toggle($(this).text().toLowerCase().indexOf(inputValue) > -1)
+        });
+        /*        var code  = e.which;
+                if (code === 13) {
+                    var inputValue = $(this).val().toLowerCase();
+                    $("#worldsTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(inputValue) > -1)
+                    });
+                }*/
+    });
+</script>
+
+</body>
+</html>
