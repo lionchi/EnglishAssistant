@@ -15,7 +15,27 @@
         transactionalMode="off" &lt;!&ndash;Представляет, является ли кэш транзакционным или нет &ndash;&gt;
     </cache>-->
 
-    <cache name="cacheOfWorld"
+    <cache name="categories"
+           maxElementsInMemory="50"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="users"
+           maxElementsInMemory="10"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="worlds"
            maxElementsInMemory="200"
            eternal="false"
            overflowToDisk="false"
@@ -25,7 +45,17 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="userByLogin"
+    <cache name="org.gavrilov.domain.Category"
+           maxElementsInMemory="50"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.Category.worlds"
            maxElementsInMemory="100"
            eternal="false"
            overflowToDisk="false"
@@ -35,8 +65,28 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="cacheOfCategory"
+    <cache name="org.gavrilov.domain.User"
+           maxElementsInMemory="10"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.User.worlds"
            maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.World"
+           maxElementsInMemory="200"
            eternal="false"
            overflowToDisk="false"
            timeToLiveSeconds="300"

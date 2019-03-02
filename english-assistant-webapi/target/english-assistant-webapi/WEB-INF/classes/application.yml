@@ -1,7 +1,4 @@
 spring:
-  mvc:
-    favicon:
-      enabled: false
   jmx:
     enabled: false
   cache:

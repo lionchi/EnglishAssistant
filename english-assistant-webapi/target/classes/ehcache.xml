@@ -16,7 +16,7 @@
     </cache>-->
 
     <cache name="categories"
-           maxElementsInMemory="200"
+           maxElementsInMemory="50"
            eternal="false"
            overflowToDisk="false"
            timeToLiveSeconds="300"
@@ -26,7 +26,7 @@
     </cache>
 
     <cache name="users"
-           maxElementsInMemory="100"
+           maxElementsInMemory="10"
            eternal="false"
            overflowToDisk="false"
            timeToLiveSeconds="300"
@@ -36,7 +36,57 @@
     </cache>
 
     <cache name="worlds"
+           maxElementsInMemory="200"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.Category"
+           maxElementsInMemory="50"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.Category.worlds"
            maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.User"
+           maxElementsInMemory="10"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.User.worlds"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
+
+    <cache name="org.gavrilov.domain.World"
+           maxElementsInMemory="200"
            eternal="false"
            overflowToDisk="false"
            timeToLiveSeconds="300"

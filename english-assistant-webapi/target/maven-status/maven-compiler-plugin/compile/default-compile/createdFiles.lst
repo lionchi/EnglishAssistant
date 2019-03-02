@@ -1,0 +1,12 @@
+com\gavrilov\controllers\LoginController.class
+com\gavrilov\controllers\UserController.class
+com\gavrilov\commons\Constant.class
+com\gavrilov\commons\MyAuthenticationSuccessHandler.class
+com\gavrilov\commons\SessionFilter.class
+com\gavrilov\commons\SessionEventListener.class
+com\gavrilov\configuration\SecurityConfiguration.class
+com\gavrilov\commons\CorsFilter.class
+com\gavrilov\StartApp.class
+com\gavrilov\controllers\CategoryController.class
+com\gavrilov\configuration\WebMvcConfig.class
+com\gavrilov\controllers\WorldController.class

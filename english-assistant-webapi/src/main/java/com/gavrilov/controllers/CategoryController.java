@@ -1,11 +1,11 @@
 package com.gavrilov.controllers;
 
 import com.gavrilov.commons.Constant;
-import com.gavrilov.commons.PagerModel;
-import com.gavrilov.dto.CategoryDTO;
-import com.gavrilov.mappers.CategoryMapper;
-import com.gavrilov.mappers.MapperFactory;
-import com.gavrilov.service.CategoryService;
+import org.gavrilov.commons.PagerModel;
+import org.gavrilov.dto.CategoryDTO;
+import org.gavrilov.mappers.CategoryMapper;
+import org.gavrilov.mappers.MapperFactory;
+import org.gavrilov.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

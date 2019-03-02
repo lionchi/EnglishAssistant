@@ -1,12 +1,12 @@
 package com.gavrilov.controllers;
 
 
-import com.gavrilov.domain.User;
-import com.gavrilov.dto.UserDTO;
-import com.gavrilov.mappers.MapperFactory;
-import com.gavrilov.mappers.UserMapper;
-import com.gavrilov.service.UserService;
-import com.gavrilov.service.WorldService;
+import org.gavrilov.domain.User;
+import org.gavrilov.dto.UserDTO;
+import org.gavrilov.mappers.MapperFactory;
+import org.gavrilov.mappers.UserMapper;
+import org.gavrilov.service.UserService;
+import org.gavrilov.service.WorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

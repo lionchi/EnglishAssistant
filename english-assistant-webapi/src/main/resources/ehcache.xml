@@ -45,7 +45,7 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="com.gavrilov.domain.Category"
+    <cache name="org.gavrilov.domain.Category"
            maxElementsInMemory="50"
            eternal="false"
            overflowToDisk="false"
@@ -55,7 +55,7 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="com.gavrilov.domain.Category.worlds"
+    <cache name="org.gavrilov.domain.Category.worlds"
            maxElementsInMemory="100"
            eternal="false"
            overflowToDisk="false"
@@ -65,7 +65,7 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="com.gavrilov.domain.User"
+    <cache name="org.gavrilov.domain.User"
            maxElementsInMemory="10"
            eternal="false"
            overflowToDisk="false"
@@ -75,7 +75,7 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="com.gavrilov.domain.User.worlds"
+    <cache name="org.gavrilov.domain.User.worlds"
            maxElementsInMemory="100"
            eternal="false"
            overflowToDisk="false"
@@ -85,7 +85,7 @@
            transactionalMode="off">
     </cache>
 
-    <cache name="com.gavrilov.domain.World"
+    <cache name="org.gavrilov.domain.World"
            maxElementsInMemory="200"
            eternal="false"
            overflowToDisk="false"
