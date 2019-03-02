@@ -22,14 +22,18 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class WorldService {
-    @Autowired
-    private WorldRepository worldRepository;
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private UserService userService;
+    private final WorldRepository worldRepository;
+    private final CategoryService categoryService;
+    private final UserService userService;
 
     private WorldMapper worldMapper = MapperFactory.createMapper(WorldMapper.class);
+
+    @Autowired
+    public WorldService(WorldRepository worldRepository, CategoryService categoryService, UserService userService) {
+        this.worldRepository = worldRepository;
+        this.categoryService = categoryService;
+        this.userService = userService;
+    }
 
     @Transactional(readOnly = true)
     public Integer getCountWorldOjUser(User user) {

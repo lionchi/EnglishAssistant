@@ -15,10 +15,14 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserService {
+    private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
+
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserRoleRepository userRoleRepository;
+    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository) {
+        this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
+    }
 
     public void saveUser(User user) {
         user.setEnabled(1);

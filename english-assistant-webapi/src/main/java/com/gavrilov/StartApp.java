@@ -1,10 +1,13 @@
 package com.gavrilov;
 
+import org.gavrilov.configuration.CoreConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
+@Import({CoreConfiguration.class})
 public class StartApp extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(StartApp.class, args);

@@ -16,8 +16,12 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class CategoryService {
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    private CategoryRepository categoryRepository;
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Transactional(readOnly = true)
     public List<CategoryDTO> findAll() {
